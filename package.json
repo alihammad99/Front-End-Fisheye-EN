@@ -1,0 +1,23 @@
+{
+  "name": "p6",
+  "version": "1.0.0",
+  "description": "Nothing to install, just open `index.html`.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --watch scss -o css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alihammad99/Front-End-Fisheye-EN.git"
+  },
+  "author": "Ali Hammad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alihammad99/Front-End-Fisheye-EN/issues"
+  },
+  "homepage": "https://github.com/alihammad99/Front-End-Fisheye-EN#readme",
+  "dependencies": {
+    "node-sass": "^7.0.1"
+  }
+}
