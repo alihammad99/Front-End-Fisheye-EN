@@ -48,7 +48,7 @@
     object-fit: cover;
   }
 }
-.photos_Container {
+.photos_container_box {
   display: grid;
   grid-template-columns: auto auto auto;
   gap: 50px;
@@ -58,23 +58,77 @@
   height: 100%;
 }
 .galleryBox {
+  display: none;
+
   width: 100vw;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.8);
   position: fixed;
+  flex-direction: row;
+  // display: none;
+  z-index: 1000;
+
+  .arrowLeft {
+    position: absolute;
+    top: 50%;
+    left: 20rem;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  .arrowRight {
+    position: absolute;
+    top: 50%;
+    right: 20rem;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
   .gallery {
     width: 35rem;
     height: 35rem;
     position: absolute;
     top: 50%;
     left: 50%;
-    background-color: rgb(230, 126, 126);
+    display: flex;
+    .gallerymediasBox {
+      width: 35rem;
+      height: 35rem;
+      display: flex;
+      flex-direction: row;
+      // gap: 2rem;
+    }
+    // background-color: rgb(230, 126, 126);
     transform: translate(-50%, -50%);
-    overflow: hidden !important;
-    .galleryPhoto {
-      width: 100%;
+    overflow: hidden;
+
+    .photoBox {
       height: 100%;
+      width: 100%;
+      overflow: hidden;
+      overflow: hidden;
+    }
+    .galleryPhoto {
+      height: 35rem;
+      width: 35rem;
       object-fit: cover;
+      margin: 0 auto;
+
+    }
+    .galleryVideo {
+      height: 100%;
+      width: 100%;
+    }
+    .galleryPhotoHide {
+      // transition: all 0.5s ease;
+      transform: translateX(-100%);
+    }
+
+    .galleryVideoAppear {
+      opacity: 1;
+      width: 100%;
+      transform: translate(0, -140%);
+
+      // transition: transform 1s ease;
     }
   }
 }

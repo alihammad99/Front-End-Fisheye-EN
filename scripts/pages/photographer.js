@@ -1,8 +1,16 @@
 import addVideo from "../components/addVideo.js";
 import addPhoto from "../components/addPhoto.js";
+import { handleGallery } from "../components/gallery.js";
+import { addToGallery, handleNext } from "../components/addgallery.js";
+
+export const photoIndex = {
+  value: 0,
+};
 
 let slug;
 let data;
+export let globalAssets;
+export let galleryMedia = [];
 
 const getData = async () => {
   //Get photographers data
@@ -29,6 +37,12 @@ const getData = async () => {
   const media = data.media;
   const item = photographers.filter((i) => i.id == slug);
   const [{ name, city, country, tagline, portrait, assets }] = item;
+  globalAssets = assets;
+  const next = document.querySelector(".arrowRight");
+  const previous = document.querySelector(".arrowLeft");
+
+  next.addEventListener("click", () => handleNext("next"));
+  previous.addEventListener("click", () => handleNext("previous"));
 
   const Portrait = `../../assets/photographers/Photographer_Photos/${portrait}`;
 
@@ -38,25 +52,86 @@ const getData = async () => {
   const photo = document.querySelector(".portrait");
   photo.setAttribute("src", Portrait);
   const photosBox = document.querySelector(".photos_Container");
+  const mediasBox = document.createElement("div");
+  const gallerymediasBox = document.createElement("div");
+  gallerymediasBox.classList.add("gallerymediasBox");
 
   const medias = media.filter((i) => i.photographerId == slug);
+  mediasBox.classList.add("photos_container_box");
 
-  const photos = [];
-  const videos = [];
+  const gallery = document.querySelector(".gallery");
+  const galleryPhoto = document.querySelector(".galleryPhoto");
 
   medias.forEach((med) => {
-    med.image && photos.push(med.image);
-    med.video && videos.push(med.video);
+    med.image &&
+      galleryMedia.push({
+        photo: med.image,
+        alt: med.title,
+        id: med.id,
+        title: med.title,
+        price: med.price,
+        displayDate: med.date,
+        date: new Date(med.date),
+        likes: med.likes,
+        photographer: med.photographerId,
+      });
+    med.video &&
+      galleryMedia.push({
+        video: med.video,
+        alt: med.title,
+        id: med.id,
+        title: med.title,
+        price: med.price,
+        displayDate: med.date,
+        date: new Date(med.date),
+        likes: med.likes,
+        photographer: med.photographerId,
+      });
+  });
 
-    if (med.image) {
-      addPhoto(med.image, med.title, assets, photosBox);
+  galleryMedia.forEach((item) => {
+    if (item.video) {
+      addVideo(item, assets, mediasBox, galleryMedia);
     }
-    if (med.video) {
-      addVideo(med.video, assets, photosBox);
+    if (item.photo) {
+      addPhoto(item, assets, mediasBox, galleryMedia, galleryPhoto);
     }
   });
-  const galleryPhoto = document.querySelector(".galleryPhoto");
-  galleryPhoto.setAttribute("src", `${assets}/${photos[0]}`);
+
+  const sortBtn = document.getElementById("sort");
+  sortBtn.addEventListener("click", () => {
+    galleryMedia = galleryMedia.sort((a, b) => b.date - a.date);
+    updateSorted();
+  });
+
+  photosBox.appendChild(mediasBox);
+
+  const updateSorted = () => {
+    mediasBox.innerHTML = "";
+    galleryMedia.forEach((item) => {
+      if (item.video) {
+        addVideo(item, assets, mediasBox, galleryMedia);
+      }
+      if (item.photo) {
+        addPhoto(item, assets, mediasBox, galleryMedia, galleryPhoto);
+      }
+    });
+  };
+
+  // galleryPhoto.setAttribute("alt", galleryMedia[photoIndex.value].alt);
+  // document
+  //   .querySelector(".arrowLeft")
+  //   .addEventListener("click", () =>
+  //     handleGallery("previous", galleryMedia, galleryPhoto, assets)
+  //   );
+  // document
+  //   .querySelector(".arrowRight")
+  //   .addEventListener("click", () =>
+  //     handleGallery("next", galleryMedia, galleryPhoto, assets)
+  //   );
+
+  addToGallery(gallerymediasBox, galleryMedia, assets);
+  gallery.appendChild(gallerymediasBox);
 };
 
 getData();
