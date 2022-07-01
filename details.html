@@ -4,7 +4,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/details.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <!-- <link rel="icon" type="image/png" href="assets/favicon.png" /> -->
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
@@ -13,15 +13,16 @@
   </head>
   <body>
     <div class="galleryBox">
-      <img width="48px" src="./assets/icons/arrow-left.svg" class="arrowLeft" />
-      <div class="gallery">
-        
+      <img width="48" src="./assets/icons/close-gallery.svg" class="close" />
+      <div class="galleryBox-Wrapper">
+        <img width="48" src="./assets/icons/arrow-left.svg" class="arrowLeft" />
+        <div class="gallery"></div>
+        <img
+          width="48"
+          src="./assets/icons/arrow-right.svg"
+          class="arrowRight"
+        />
       </div>
-      <img
-        width="48px"
-        src="./assets/icons/arrow-right.svg"
-        class="arrowRight"
-      />
     </div>
     <header>
       <img src="assets/images/logo.png" class="logo" />
@@ -44,7 +45,17 @@
 
       <section>
         <h5>Order by</h5>
-        <button id="sort">Sort by name</button>
+        <ul class="sort-list">
+          <li class="sort-item" id="defaultSort">
+            <button>
+              Popularity
+              <img src="./assets/icons/sort.svg" />
+            </button>
+          </li>
+          <li class="sort-item" id="sort-date"><button>Date</button></li>
+          <li class="sort-item" id="sort-name"><button>Title</button></li>
+        </ul>
+
         <div class="photos_Container"></div>
       </section>
     </main>

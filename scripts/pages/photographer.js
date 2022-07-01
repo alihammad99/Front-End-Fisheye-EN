@@ -1,7 +1,6 @@
 import addVideo from "../components/addVideo.js";
 import addPhoto from "../components/addPhoto.js";
-import { handleGallery } from "../components/gallery.js";
-import { addToGallery, handleNext } from "../components/addgallery.js";
+import { handleNext } from "../components/addgallery.js";
 
 export const photoIndex = {
   value: 0,
@@ -53,18 +52,16 @@ const getData = async () => {
   photo.setAttribute("src", Portrait);
   const photosBox = document.querySelector(".photos_Container");
   const mediasBox = document.createElement("div");
-  const gallerymediasBox = document.createElement("div");
-  gallerymediasBox.classList.add("gallerymediasBox");
 
   const medias = media.filter((i) => i.photographerId == slug);
   mediasBox.classList.add("photos_container_box");
 
-  const gallery = document.querySelector(".gallery");
   const galleryPhoto = document.querySelector(".galleryPhoto");
+  const defaultData = [];
 
   medias.forEach((med) => {
     med.image &&
-      galleryMedia.push({
+      defaultData.push({
         photo: med.image,
         alt: med.title,
         id: med.id,
@@ -76,7 +73,7 @@ const getData = async () => {
         photographer: med.photographerId,
       });
     med.video &&
-      galleryMedia.push({
+      defaultData.push({
         video: med.video,
         alt: med.title,
         id: med.id,
@@ -89,6 +86,8 @@ const getData = async () => {
       });
   });
 
+  galleryMedia = [...defaultData];
+
   galleryMedia.forEach((item) => {
     if (item.video) {
       addVideo(item, assets, mediasBox, galleryMedia);
@@ -98,9 +97,37 @@ const getData = async () => {
     }
   });
 
-  const sortBtn = document.getElementById("sort");
-  sortBtn.addEventListener("click", () => {
+  const defaultSort = document.getElementById("defaultSort");
+  const sortByDate = document.getElementById("sort-date");
+  const sortByName = document.getElementById("sort-name");
+
+  //Default Sort
+  defaultSort.addEventListener("click", () => {
+    galleryMedia = [...defaultData];
+    console.log(defaultData);
+
+    updateSorted();
+  });
+
+  //Sort Photos by Dates
+  sortByDate.addEventListener("click", () => {
     galleryMedia = galleryMedia.sort((a, b) => b.date - a.date);
+    updateSorted();
+  });
+
+  //Sort Photos by titles
+  sortByName.addEventListener("click", () => {
+    galleryMedia.forEach((item) => console.log(item.title));
+    galleryMedia = galleryMedia.sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (b.title < a.title) {
+        return 1;
+      }
+      return 0;
+    });
+
     updateSorted();
   });
 
@@ -118,20 +145,12 @@ const getData = async () => {
     });
   };
 
-  // galleryPhoto.setAttribute("alt", galleryMedia[photoIndex.value].alt);
-  // document
-  //   .querySelector(".arrowLeft")
-  //   .addEventListener("click", () =>
-  //     handleGallery("previous", galleryMedia, galleryPhoto, assets)
-  //   );
-  // document
-  //   .querySelector(".arrowRight")
-  //   .addEventListener("click", () =>
-  //     handleGallery("next", galleryMedia, galleryPhoto, assets)
-  //   );
-
-  addToGallery(gallerymediasBox, galleryMedia, assets);
-  gallery.appendChild(gallerymediasBox);
+  document
+    .querySelector(".close")
+    .addEventListener(
+      "click",
+      () => (document.querySelector(".galleryBox").style.display = "none")
+    );
 };
 
 getData();

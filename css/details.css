@@ -45,7 +45,7 @@
 .photos_container_box {
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 50px; }
+  gap: 6rem; }
 
 .video {
   width: 100%;
@@ -59,48 +59,104 @@
   position: fixed;
   flex-direction: row;
   z-index: 1000; }
-  .galleryBox .arrowLeft {
+  .galleryBox .close {
     position: absolute;
-    top: 50%;
-    left: 20rem;
-    transform: translateY(-50%);
+    top: 3rem;
+    right: 3.5rem;
+    height: 2.5rem;
+    width: 2.5rem;
     cursor: pointer; }
-  .galleryBox .arrowRight {
-    position: absolute;
-    top: 50%;
-    right: 20rem;
-    transform: translateY(-50%);
-    cursor: pointer; }
-  .galleryBox .gallery {
-    width: 35rem;
+  .galleryBox .galleryBox-Wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     height: 35rem;
+    width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
-    display: flex;
     transform: translate(-50%, -50%);
     overflow: hidden; }
-    .galleryBox .gallery .gallerymediasBox {
-      width: 35rem;
+    .galleryBox .galleryBox-Wrapper .arrowLeft {
+      transform: translateY(-50%);
+      cursor: pointer;
+      z-index: 1000;
+      width: 2.5rem;
+      margin-left: 4rem; }
+    .galleryBox .galleryBox-Wrapper .arrowRight {
+      transform: translateY(-50%);
+      cursor: pointer;
+      z-index: 1000;
+      width: 2.5rem;
+      margin-right: 4rem; }
+    .galleryBox .galleryBox-Wrapper .gallery {
       height: 35rem;
       display: flex;
-      flex-direction: row; }
-    .galleryBox .gallery .photoBox {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
       overflow: hidden; }
-    .galleryBox .gallery .galleryPhoto {
-      height: 35rem;
-      width: 35rem;
-      object-fit: cover;
-      margin: 0 auto; }
-    .galleryBox .gallery .galleryVideo {
-      height: 100%;
-      width: 100%; }
-    .galleryBox .gallery .galleryPhotoHide {
-      transform: translateX(-100%); }
-    .galleryBox .gallery .galleryVideoAppear {
-      opacity: 1;
-      width: 100%;
-      transform: translate(0, -140%); }
+      .galleryBox .galleryBox-Wrapper .gallery .photoBox {
+        height: 100%;
+        width: 100%;
+        overflow: hidden; }
+      .galleryBox .galleryBox-Wrapper .gallery .galleryPhoto {
+        height: 35rem;
+        width: 35rem;
+        object-fit: cover;
+        margin: 0 auto; }
+      .galleryBox .galleryBox-Wrapper .gallery .galleryVideo {
+        height: 100%;
+        width: 100%; }
+      .galleryBox .galleryBox-Wrapper .gallery .galleryPhotoHide {
+        transform: translateX(-100%); }
+      .galleryBox .galleryBox-Wrapper .gallery .galleryVideoAppear {
+        opacity: 1;
+        width: 100%;
+        transform: translate(0, -140%); }
+
+.contentbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 5000;
+  align-items: center; }
+  .contentbox img {
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer; }
+  .contentbox .likebox {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    color: #901c1c;
+    font-size: 1.5rem;
+    align-items: center; }
+
+.sort-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: flex-start;
+  flex-wrap: wrap-reverse;
+  padding: 1rem;
+  background-color: #901c1c;
+  list-style: none;
+  width: 8rem;
+  border-radius: 5px; }
+  .sort-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; }
+    .sort-list li:not(:last-child)::after {
+      content: "";
+      padding: 0.5px 1rem;
+      background: #fff; }
+  .sort-list button {
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left; }
+    .sort-list button img {
+      margin-left: 0.55rem; }

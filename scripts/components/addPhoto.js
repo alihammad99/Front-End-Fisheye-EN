@@ -1,27 +1,61 @@
 import { addToGallery } from "./addgallery.js";
-import { handleGallery } from "./gallery.js";
 
 const addPhoto = (item, assets, cont, galleryMedia, galleryPhoto) => {
+  let likeState = false;
+
   const index = galleryMedia.indexOf(item);
-  
+
+  //Main container
   const box = document.createElement("div");
   box.classList.add("photos_box");
-  // console.log(num);
 
+  //Text & Likes Container
+  const contentbox = document.createElement("div");
+  contentbox.classList.add("contentbox");
+
+  //ikes Container
+  const likebox = document.createElement("div");
+  likebox.classList.add("likebox");
+
+  //Photo
   const img = document.createElement("img");
   img.setAttribute("src", `${assets}/${item.photo}`);
   img.setAttribute("alt", item.title);
-  box.appendChild(img);
-  cont.appendChild(box);
-
-  // img.addEventListener("click", () => {
-  //   handleGallery("current", galleryMedia, galleryPhoto, assets, index);
-  //   document.querySelector(".gallery").style.display = "block";
-  // });
-  box.addEventListener("click", () => {
+  img.addEventListener("click", () => {
+    document.querySelector(".gallery").innerHTML = "";
     document.querySelector(".galleryBox").style.display = "block";
     addToGallery(item.id, "photo", galleryMedia, assets, index);
   });
+
+  //Photo's Title
+  const title = document.createElement("h3");
+  title.textContent = item.title;
+
+  //Photo's Likes number
+  const likes = document.createElement("h4");
+  likes.textContent = item.likes;
+
+  //Like Icon
+  const likeIcon = document.createElement("img");
+  likeIcon.setAttribute("src", `../assets/icons/like.svg`);
+  likeIcon.addEventListener("click", () => {
+    likeState = !likeState;
+    if (likeState) {
+      likeIcon.setAttribute("src", `../assets/icons/like-fill.svg`);
+      likes.textContent = item.likes + 1;
+    }
+    if (!likeState) {
+      likeIcon.setAttribute("src", `../assets/icons/like.svg`);
+      likes.textContent = item.likes;
+    }
+  });
+
+  //Append Elements
+  likebox.append(likes, likeIcon);
+  contentbox.append(title, likebox);
+  box.appendChild(img);
+  box.append(contentbox);
+  cont.appendChild(box);
 };
 
 export default addPhoto;

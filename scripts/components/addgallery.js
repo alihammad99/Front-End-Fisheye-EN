@@ -15,7 +15,7 @@ export const addToGallery = (id, type, data, assets, index, func) => {
     const video = document.createElement("video");
     const source = document.createElement("source");
 
-    source.setAttribute("src", "#");
+    source.setAttribute("src", `${assets}/${data[index].video}`);
     source.setAttribute("type", "video/mp4");
     video.appendChild(source);
     document.querySelector(".gallery").appendChild(video);
@@ -40,7 +40,6 @@ export const handleNext = (action) => {
           Image.setAttribute("src", `${globalAssets}/${item.photo}`);
           document.querySelector(".gallery").appendChild(Image);
         }
-        // current++;
 
         if (item.video) {
           current++;
@@ -69,7 +68,6 @@ export const handleNext = (action) => {
           Image.setAttribute("src", `${globalAssets}/${item.photo}`);
           document.querySelector(".gallery").appendChild(Image);
         }
-        // current++;
 
         if (item.video) {
           current--;
