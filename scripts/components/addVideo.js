@@ -5,7 +5,7 @@ const addVideo = (item, assets, cont, galleryMedia) => {
   let likeState = false;
 
   const box = document.createElement("div");
-  box.classList.add("photos_box");
+  box.classList.add("media-box");
   photoIndex = galleryMedia.length;
 
   //Text & Likes Container
@@ -19,6 +19,7 @@ const addVideo = (item, assets, cont, galleryMedia) => {
   //Photo's Title
   const title = document.createElement("h3");
   title.textContent = item.title;
+  title.classList.add("media-box_contentbox_title")
 
   //Photo's Likes number
   const likes = document.createElement("h4");
@@ -54,7 +55,7 @@ const addVideo = (item, assets, cont, galleryMedia) => {
   video.addEventListener("click", () => {
     document.querySelector(".gallery").innerHTML = "";
     document.querySelector(".galleryBox").style.display = "block";
-    addToGallery(item.id, "video", galleryMedia, assets, index);
+    addToGallery(item, "video", galleryMedia, assets, index);
   });
 };
 

@@ -7,7 +7,7 @@ const addPhoto = (item, assets, cont, galleryMedia, galleryPhoto) => {
 
   //Main container
   const box = document.createElement("div");
-  box.classList.add("photos_box");
+  box.classList.add("media-box");
 
   //Text & Likes Container
   const contentbox = document.createElement("div");
@@ -24,12 +24,13 @@ const addPhoto = (item, assets, cont, galleryMedia, galleryPhoto) => {
   img.addEventListener("click", () => {
     document.querySelector(".gallery").innerHTML = "";
     document.querySelector(".galleryBox").style.display = "block";
-    addToGallery(item.id, "photo", galleryMedia, assets, index);
+    addToGallery(item, "photo", galleryMedia, assets, index);
   });
 
   //Photo's Title
   const title = document.createElement("h3");
   title.textContent = item.title;
+  title.classList.add("media-box_contentbox_title");
 
   //Photo's Likes number
   const likes = document.createElement("h4");

@@ -2,10 +2,6 @@ import addVideo from "../components/addVideo.js";
 import addPhoto from "../components/addPhoto.js";
 import { handleNext } from "../components/addgallery.js";
 
-export const photoIndex = {
-  value: 0,
-};
-
 let slug;
 let data;
 export let globalAssets;
@@ -27,7 +23,7 @@ const getData = async () => {
     const url = await fetch(window.location.search).then(
       (response) => response.url
     );
-    slug = url.split("?")[1].slice(3);
+    slug = new URL(url).search.slice(4);
   } catch (err) {
     console.error(err);
   }
@@ -37,6 +33,7 @@ const getData = async () => {
   const item = photographers.filter((i) => i.id == slug);
   const [{ name, city, country, tagline, portrait, assets }] = item;
   globalAssets = assets;
+  document.querySelector(".modal h2").innerHTML = `Contact me<br />${name}`;
   const next = document.querySelector(".arrowRight");
   const previous = document.querySelector(".arrowLeft");
 
@@ -96,7 +93,20 @@ const getData = async () => {
       addPhoto(item, assets, mediasBox, galleryMedia, galleryPhoto);
     }
   });
-
+  let sortState = false;
+  const sortBtnBox = document.querySelector(".sort-list");
+  const sortIcon = document.querySelector(".sort-item_icon");
+  sortIcon.addEventListener("click", () => {
+    if (!sortState) {
+      sortBtnBox.style.height = "auto";
+      sortState = !sortState;
+      sortIcon.style.transform = "rotate(180deg) translateX(-1rem)";
+    } else {
+      sortBtnBox.style.height = "1.4rem";
+      sortState = !sortState;
+      sortIcon.style.transform = "rotate(0) translateX(0.2rem)";
+    }
+  });
   const defaultSort = document.getElementById("defaultSort");
   const sortByDate = document.getElementById("sort-date");
   const sortByName = document.getElementById("sort-name");

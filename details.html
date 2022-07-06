@@ -4,6 +4,8 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/details.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- <link rel="icon" type="image/png" href="assets/favicon.png" /> -->
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
@@ -43,13 +45,13 @@
         </div>
       </div>
 
-      <section>
-        <h5>Order by</h5>
+      <section class="media_section">
+        <h5 class="media_section_title">Order by</h5>
         <ul class="sort-list">
           <li class="sort-item" id="defaultSort">
             <button>
               Popularity
-              <img src="./assets/icons/sort.svg" />
+              <img src="./assets/icons/sort.svg" class="sort-item_icon" />
             </button>
           </li>
           <li class="sort-item" id="sort-date"><button>Date</button></li>
@@ -66,9 +68,21 @@
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
         <form>
-          <div>
+          <div class="form-first-name">
             <label>First name</label>
-            <input />
+            <input type="text" name="first-name" />
+          </div>
+          <div>
+            <label>Last name</label>
+            <input type="text" name="last-name" />
+          </div>
+          <div>
+            <label>Email</label>
+            <input type="email" name="email" />
+          </div>
+          <div>
+            <label>Your message</label>
+            <input type="text" name="message" />
           </div>
           <button class="contact_button">Send</button>
         </form>
