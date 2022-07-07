@@ -12,21 +12,23 @@ function photographerFactory(data) {
     Photo.classList.add("portrait");
     Photo.setAttribute("src", picture);
     Photo.setAttribute("alt", name);
+    const Paragraph = document.createElement("p");
+
     const Name = document.createElement("h2");
     Name.textContent = name;
-    const Place = document.createElement("h3");
+    const Place = document.createElement("span");
     Place.textContent = `${city}, ${country}`;
-    const Bio = document.createElement("h4");
+    const Bio = document.createElement("span");
     Bio.textContent = tagline;
-    const Price = document.createElement("p");
+    const Price = document.createElement("span");
     Price.textContent = `$${price}/day`;
-
-    link.appendChild(Photo);
+    link.setAttribute("role", "Link (h2) + image");
+    link.append(Photo, Name);
+    Paragraph.append(Place, Bio, Price);
+    Paragraph.setAttribute("role", "Paragraph text");
+    article.setAttribute("role", "Link (h2) + image");
     article.appendChild(link);
-    article.appendChild(Name);
-    article.appendChild(Place);
-    article.appendChild(Bio);
-    article.appendChild(Price);
+    article.appendChild(Paragraph);
     return article;
   }
   return { name, picture, getUserCardDOM };

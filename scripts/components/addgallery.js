@@ -2,37 +2,14 @@ import { galleryMedia } from "../pages/photographer.js";
 import { globalAssets } from "../pages/photographer.js";
 let current;
 
-export const addToGallery = (item, type, data, assets, index, func) => {
+export const addToGallery = (item, type, index) => {
   current = index;
 
   if (type === "photo") {
-    const box = document.createElement("div");
-    box.classList.add("gallery_media-box");
-    const Image = document.createElement("img");
-    Image.setAttribute("src", `${assets}/${data[index].photo}`);
-    const title = document.createElement("h3");
-    title.classList.add("media-box_contentbox_title");
-    title.textContent = item.title;
-
-    // Push
-    box.appendChild(Image);
-    document.querySelector(".gallery").append(box, title);
+    addPhoto(item, globalAssets);
   }
   if (type === "video") {
-    const box = document.createElement("div");
-    box.classList.add("gallery_media-box");
-    const video = document.createElement("video");
-    const source = document.createElement("source");
-    const title = document.createElement("h3");
-    title.classList.add("media-box_contentbox_title");
-    title.textContent = item.title;
-
-    source.setAttribute("src", `${assets}/${data[index].video}`);
-    source.setAttribute("type", "video/mp4");
-    video.appendChild(source);
-    box.appendChild(video);
-    document.querySelector(".gallery").appendChild(box);
-    // Push
+    addVideo(item, globalAssets);
   }
 };
 
@@ -48,42 +25,12 @@ export const handleNext = (action) => {
 
         if (item.photo) {
           current++;
-
-          const Image = document.createElement("img");
-          Image.setAttribute("src", `${globalAssets}/${item.photo}`);
-
-          const box = document.createElement("div");
-          box.classList.add("gallery_media-box");
-
-          const title = document.createElement("h3");
-          title.classList.add("media-box_contentbox_title");
-          title.textContent = item.title;
-
-          // Push
-          box.appendChild(Image);
-          document.querySelector(".gallery").append(box, title);
+          addPhoto(item, globalAssets);
         }
 
         if (item.video) {
           current++;
-
-          const box = document.createElement("div");
-          box.classList.add("gallery_media-box");
-
-          const video = document.createElement("video");
-          const source = document.createElement("source");
-
-          source.setAttribute("src", `${globalAssets}/${item.video}`);
-          source.setAttribute("type", "video/mp4");
-          video.appendChild(source);
-
-          const title = document.createElement("h3");
-          title.classList.add("media-box_contentbox_title");
-          title.textContent = item.title;
-
-          // Push
-          box.appendChild(video);
-          document.querySelector(".gallery").append(box, title);
+          addVideo(item, globalAssets);
         }
       }
       break;
@@ -96,43 +43,12 @@ export const handleNext = (action) => {
 
         if (item.photo) {
           current--;
-
-          const Image = document.createElement("img");
-          Image.setAttribute("src", `${globalAssets}/${item.photo}`);
-          document.querySelector(".gallery").appendChild(Image);
-
-          const box = document.createElement("div");
-          box.classList.add("gallery_media-box");
-
-          const title = document.createElement("h3");
-          title.classList.add("media-box_contentbox_title");
-          title.textContent = item.title;
-
-          // Push
-          box.appendChild(Image);
-          document.querySelector(".gallery").append(box, title);
+          addPhoto(item, globalAssets);
         }
 
         if (item.video) {
           current--;
-
-          const box = document.createElement("div");
-          box.classList.add("gallery_media-box");
-
-          const video = document.createElement("video");
-          const source = document.createElement("source");
-
-          source.setAttribute("src", `${globalAssets}/${item.video}`);
-          source.setAttribute("type", "video/mp4");
-          video.appendChild(source);
-
-          const title = document.createElement("h3");
-          title.classList.add("media-box_contentbox_title");
-          title.textContent = item.title;
-
-          // Push
-          box.appendChild(video);
-          document.querySelector(".gallery").append(box, title);
+          addVideo(item, globalAssets);
         }
       }
       break;
@@ -142,4 +58,41 @@ export const handleNext = (action) => {
         "Unable to handle click event in gallery, please make sure to put an action type."
       );
   }
+};
+
+const addPhoto = (item, assets) => {
+  const Image = document.createElement("img");
+  Image.setAttribute("src", `${assets}/${item.photo}`);
+
+  const box = document.createElement("div");
+  box.classList.add("gallery_media-box");
+
+  const title = document.createElement("h3");
+  title.classList.add("media-box_contentbox_title");
+  title.textContent = item.title;
+
+  box.appendChild(Image);
+  document.querySelector(".gallery").append(box, title);
+};
+
+const addVideo = (item, assets) => {
+  const box = document.createElement("div");
+  box.classList.add("gallery_media-box");
+
+  const video = document.createElement("video");
+  const source = document.createElement("source");
+
+  source.setAttribute("src", `${assets}/${item.video}`);
+  source.setAttribute("type", "video/mp4");
+  video.appendChild(source);
+  video.autoplay = true;
+  video.controls = true;
+
+  const title = document.createElement("h3");
+  title.classList.add("media-box_contentbox_title");
+  title.textContent = item.title;
+
+  // Push
+  box.appendChild(video);
+  document.querySelector(".gallery").append(box, title);
 };

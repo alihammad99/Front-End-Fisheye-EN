@@ -19,7 +19,7 @@ const addVideo = (item, assets, cont, galleryMedia) => {
   //Photo's Title
   const title = document.createElement("h3");
   title.textContent = item.title;
-  title.classList.add("media-box_contentbox_title")
+  title.classList.add("media-box_contentbox_title");
 
   //Photo's Likes number
   const likes = document.createElement("h4");
@@ -47,6 +47,7 @@ const addVideo = (item, assets, cont, galleryMedia) => {
   source.setAttribute("src", `${assets}/${item.video}`);
   source.setAttribute("type", "video/mp4");
   video.appendChild(source);
+  video.autoplay = true;
   video.classList.add("video");
   likebox.append(likes, likeIcon);
   contentbox.append(title, likebox);
@@ -55,7 +56,7 @@ const addVideo = (item, assets, cont, galleryMedia) => {
   video.addEventListener("click", () => {
     document.querySelector(".gallery").innerHTML = "";
     document.querySelector(".galleryBox").style.display = "block";
-    addToGallery(item, "video", galleryMedia, assets, index);
+    addToGallery(item, "video", index);
   });
 };
 

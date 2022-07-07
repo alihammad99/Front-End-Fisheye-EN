@@ -66,6 +66,10 @@ h4 {
   margin: 0.6em;
   font-weight: 400;
 }
+.photographer_section article p span {
+  display: block;
+  text-align: center;
+}
 .photographer_section article a {
   height: 200px;
   width: 200px;
@@ -82,4 +86,3 @@ h4 {
 .photographer_section {
   pointer-events: all;
 }
-

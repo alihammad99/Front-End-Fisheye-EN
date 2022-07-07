@@ -81,7 +81,7 @@ $mobile: 560px;
     height: 100%;
     object-fit: cover;
   }
-  
+
   @media (max-width: $mobile) {
     width: 100%;
   }
@@ -134,7 +134,7 @@ $mobile: 560px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    overflow: hidden;
+    // overflow: hidden;
     .arrowLeft {
       transform: translateY(-50%);
       cursor: pointer;
@@ -162,33 +162,51 @@ $mobile: 560px;
 
     .gallery {
       // max-width: 55rem;
-      height: 35rem;
+      height: 80vh;
+      // width: auto;
+      max-width: 50rem;
       display: flex;
       flex-direction: column;
-      @media (max-width: $mobile) {
-        height: auto;
+
+      // overflow: hidden;
+      .media-box_contentbox_title {
+        font-size: 1.35rem;
+        color: #901c1c;
+        z-index: 200;
+        // transform: translateY(2rem);
+        display: block;
+        margin: 0;
+        text-align: center;
+        transform: translateY(-1.6rem)
+      }
+      .gallery_media-box {
+        height: 100%;
         width: 100%;
+        padding: 0;
+        margin: 0;
+
         img {
-          height: 100%;
+          height: 90%;
           width: 100%;
           object-fit: contain;
           // margin-bottom: 3rem;
           display: block;
         }
         video {
-          
+          // height: 100%;
           width: 100%;
-        }
-        h3 {
-          display: block;
-        }
-        &:__media-box {
+          transform: translateY(6rem);
 
+          @media (max-width: $mobile) {
+            transform: translateY(0);
+          }
         }
       }
 
-      display: flex;
-      overflow: hidden;
+      @media (max-width: $mobile) {
+        height: auto;
+        width: 100%;
+      }
 
       .photoBox {
         height: 100%;
@@ -331,10 +349,4 @@ $mobile: 560px;
 
 .form-first-name {
   margin-top: 4rem;
-}
-.media-box_contentbox_title {
-  font-size: 1.35rem;
-  color: #901c1c;
-  margin: 0;
-  z-index: 200;
 }

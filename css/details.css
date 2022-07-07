@@ -117,8 +117,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: hidden; }
+    transform: translate(-50%, -50%); }
     .galleryBox .galleryBox-Wrapper .arrowLeft {
       transform: translateY(-50%);
       cursor: pointer;
@@ -142,24 +141,38 @@
           width: 1.5rem;
           padding: 0.1rem; } }
     .galleryBox .galleryBox-Wrapper .gallery {
-      height: 35rem;
+      height: 80vh;
+      max-width: 50rem;
       display: flex;
-      flex-direction: column;
-      display: flex;
-      overflow: hidden; }
+      flex-direction: column; }
+      .galleryBox .galleryBox-Wrapper .gallery .media-box_contentbox_title {
+        font-size: 1.35rem;
+        color: #901c1c;
+        z-index: 200;
+        display: block;
+        margin: 0;
+        text-align: center;
+        transform: translateY(-1.6rem); }
+      .galleryBox .galleryBox-Wrapper .gallery .gallery_media-box {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0; }
+        .galleryBox .galleryBox-Wrapper .gallery .gallery_media-box img {
+          height: 90%;
+          width: 100%;
+          object-fit: contain;
+          display: block; }
+        .galleryBox .galleryBox-Wrapper .gallery .gallery_media-box video {
+          width: 100%;
+          transform: translateY(6rem); }
+          @media (max-width: 560px) {
+            .galleryBox .galleryBox-Wrapper .gallery .gallery_media-box video {
+              transform: translateY(0); } }
       @media (max-width: 560px) {
         .galleryBox .galleryBox-Wrapper .gallery {
           height: auto;
-          width: 100%; }
-          .galleryBox .galleryBox-Wrapper .gallery img {
-            height: 100%;
-            width: 100%;
-            object-fit: contain;
-            display: block; }
-          .galleryBox .galleryBox-Wrapper .gallery video {
-            width: 100%; }
-          .galleryBox .galleryBox-Wrapper .gallery h3 {
-            display: block; } }
+          width: 100%; } }
       .galleryBox .galleryBox-Wrapper .gallery .photoBox {
         height: 100%;
         width: 100%;
@@ -271,9 +284,3 @@
 
 .form-first-name {
   margin-top: 4rem; }
-
-.media-box_contentbox_title {
-  font-size: 1.35rem;
-  color: #901c1c;
-  margin: 0;
-  z-index: 200; }

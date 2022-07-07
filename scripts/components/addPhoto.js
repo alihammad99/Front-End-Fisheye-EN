@@ -24,7 +24,7 @@ const addPhoto = (item, assets, cont, galleryMedia, galleryPhoto) => {
   img.addEventListener("click", () => {
     document.querySelector(".gallery").innerHTML = "";
     document.querySelector(".galleryBox").style.display = "block";
-    addToGallery(item, "photo", galleryMedia, assets, index);
+    addToGallery(item, "photo", index);
   });
 
   //Photo's Title

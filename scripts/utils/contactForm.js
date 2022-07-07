@@ -1,9 +1,27 @@
+const modal = document.getElementById("contact_modal");
+
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+  modal.style.display = "block";
 }
 
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
+  modal.style.display = "none";
 }
+const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(e.formData);
+  const form = document.querySelector("form");
+  const firstName = console.log(
+    "First name: " + form.querySelector('input[name="first-name"]').value
+  );
+  const lastName = console.log(
+    "Last name: " + form.querySelector('input[name="last-name"]').value
+  );
+  const email = console.log(
+    "Email: " + form.querySelector('input[name="email"]').value
+  );
+  const message = console.log(
+    "Your message: " + form.querySelector('input[name="message"]').value
+  );
+  closeModal();
+};
