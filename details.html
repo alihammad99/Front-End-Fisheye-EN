@@ -15,20 +15,23 @@
   </head>
   <body>
     <div class="galleryBox">
-      <img width="48" src="./assets/icons/close-gallery.svg" class="close" />
       <div class="galleryBox-Wrapper">
-        <img width="48" src="./assets/icons/arrow-left.svg" class="arrowLeft" />
+        <button tabindex="0" class="prevBtn">
+          <img src="./assets/icons/arrow-left.svg" class="arrowLeft" />
+        </button>
         <div class="gallery"></div>
-        <img
-          width="48"
-          src="./assets/icons/arrow-right.svg"
-          class="arrowRight"
-        />
+        <button tabindex="0" class="nextBtn">
+          <img src="./assets/icons/arrow-right.svg" class="arrowRight" />
+        </button>
       </div>
+      <button tabindex="0" class="closeBtn">
+        <img width="48" src="./assets/icons/close-gallery.svg" class="close" />
+      </button>
     </div>
     <header>
       <img
         src="assets/images/logo.png"
+        tabindex="0"
         class="logo"
         alt=""
         Fisheye
@@ -41,8 +44,8 @@
     <main id="main" class="container">
       <div class="photograph-header flex">
         <div class="left">
-          <h1 class="name" role="Heading (h1)"></h1>
-          <div role="Text">
+          <h1 class="name" role="Heading (h1)" class="place" tabindex="0"></h1>
+          <div role="Text" tabindex="0">
             <p class="city">London, UK</p>
             <p class="tag">Finding beauty in everyday things</p>
           </div>
@@ -50,19 +53,20 @@
         <button
           role="Button"
           name="Contact Me"
+          tabindex="0"
           class="contact_button center"
           onclick="displayModal()"
         >
           Contact me
         </button>
         <div class="right">
-          <img class="portrait" />
+          <img class="portrait" tabindex="0" />
         </div>
       </div>
 
       <section class="media_section">
-        <h5 class="media_section_title">Order by</h5>
-        <ul class="sort-list">
+        <h5 class="media_section_title" tabindex="0">Order by</h5>
+        <ul class="sort-list" tabindex="0">
           <li class="sort-item" id="defaultSort">
             <button>
               Popularity
@@ -99,7 +103,9 @@
             <label>Your message</label>
             <input type="text" name="message" />
           </div>
-          <button class="contact_button" type="button" onclick="handleSubmit()">Send</button>
+          <button class="contact_button" type="button" onclick="handleSubmit()">
+            Send
+          </button>
         </form>
       </div>
     </div>

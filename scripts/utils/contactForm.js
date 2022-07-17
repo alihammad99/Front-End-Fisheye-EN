@@ -7,21 +7,25 @@ function displayModal() {
 function closeModal() {
   modal.style.display = "none";
 }
-const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(e.formData);
+const handleSubmit = () => {
   const form = document.querySelector("form");
-  const firstName = console.log(
-    "First name: " + form.querySelector('input[name="first-name"]').value
-  );
-  const lastName = console.log(
-    "Last name: " + form.querySelector('input[name="last-name"]').value
-  );
-  const email = console.log(
-    "Email: " + form.querySelector('input[name="email"]').value
-  );
-  const message = console.log(
-    "Your message: " + form.querySelector('input[name="message"]').value
-  );
+
+  const details = {
+    firstName:
+      "First name: " + form.querySelector('input[name="first-name"]').value,
+
+    lastName:
+      "Last name: " + form.querySelector('input[name="last-name"]').value,
+
+    email: "Email: " + form.querySelector('input[name="email"]').value,
+
+    message:
+      "Your message: " + form.querySelector('input[name="message"]').value,
+  };
+  
+  for (let i in details) {
+    console.log(details[i]);
+  }
+
   closeModal();
 };

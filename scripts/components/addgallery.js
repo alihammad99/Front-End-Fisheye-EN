@@ -20,7 +20,6 @@ export const handleNext = (action) => {
     case "next": {
       if (current < length - 1) {
         document.querySelector(".gallery").innerHTML = "";
-        console.log(galleryMedia);
         const item = galleryMedia[current + 1];
 
         if (item.photo) {
@@ -38,7 +37,6 @@ export const handleNext = (action) => {
     case "previous": {
       if (current > 0) {
         document.querySelector(".gallery").innerHTML = "";
-        console.log(galleryMedia);
         const item = galleryMedia[current - 1];
 
         if (item.photo) {
@@ -70,6 +68,7 @@ const addPhoto = (item, assets) => {
   const title = document.createElement("h3");
   title.classList.add("media-box_contentbox_title");
   title.textContent = item.title;
+  title.setAttribute("role", "text");
 
   box.appendChild(Image);
   document.querySelector(".gallery").append(box, title);
@@ -91,6 +90,7 @@ const addVideo = (item, assets) => {
   const title = document.createElement("h3");
   title.classList.add("media-box_contentbox_title");
   title.textContent = item.title;
+  title.setAttribute("role", "text");
 
   // Push
   box.appendChild(video);

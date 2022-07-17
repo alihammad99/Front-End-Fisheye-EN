@@ -27,6 +27,11 @@ const getData = async () => {
   } catch (err) {
     console.error(err);
   }
+  const galleryVisible =
+    document.querySelector(".galleryBox").style.display === "block";
+
+  if (galleryVisible) {
+  }
 
   const photographers = data.photographers;
   const media = data.media;
@@ -34,11 +39,19 @@ const getData = async () => {
   const [{ name, city, country, tagline, portrait, assets }] = item;
   globalAssets = assets;
   document.querySelector(".modal h2").innerHTML = `Contact me<br />${name}`;
-  const next = document.querySelector(".arrowRight");
-  const previous = document.querySelector(".arrowLeft");
+  const next = document.querySelector(".nextBtn");
+  const previous = document.querySelector(".prevBtn");
 
   next.addEventListener("click", () => handleNext("next"));
+  next.addEventListener(
+    "keypress",
+    (e) => e.key == "Enter" && handleNext("next")
+  );
   previous.addEventListener("click", () => handleNext("previous"));
+  previous.addEventListener(
+    "keypress",
+    (e) => e.key == "Enter" && handleNext("previous")
+  );
 
   const Portrait = `../../assets/photographers/Photographer_Photos/${portrait}`;
 
@@ -90,7 +103,7 @@ const getData = async () => {
       addVideo(item, assets, mediasBox, galleryMedia);
     }
     if (item.photo) {
-      addPhoto(item, assets, mediasBox, galleryMedia, galleryPhoto);
+      addPhoto(item, assets, mediasBox, galleryMedia);
     }
   });
   let sortState = false;
@@ -114,8 +127,6 @@ const getData = async () => {
   //Default Sort
   defaultSort.addEventListener("click", () => {
     galleryMedia = [...defaultData];
-    console.log(defaultData);
-
     updateSorted();
   });
 
@@ -127,7 +138,6 @@ const getData = async () => {
 
   //Sort Photos by titles
   sortByName.addEventListener("click", () => {
-    galleryMedia.forEach((item) => console.log(item.title));
     galleryMedia = galleryMedia.sort((a, b) => {
       if (a.title < b.title) {
         return -1;
@@ -155,12 +165,16 @@ const getData = async () => {
     });
   };
 
-  document
-    .querySelector(".close")
-    .addEventListener(
-      "click",
-      () => (document.querySelector(".galleryBox").style.display = "none")
-    );
+  const closeGalleryBtn = document.querySelector(".closeBtn");
+  closeGalleryBtn.addEventListener(
+    "click",
+    () => (document.querySelector(".galleryBox").style.display = "none")
+  );
+  closeGalleryBtn.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      return (document.querySelector(".galleryBox").style.display = "none");
+    }
+  });
 };
 
 getData();
