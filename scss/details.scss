@@ -219,6 +219,7 @@ $mobile: 560px;
 
 .media_section {
   &_title {
+    margin: 5rem 0 1rem 0;
     font-size: 1.5rem;
     @media (max-width: $mobile) {
       margin-left: 1rem;
@@ -228,53 +229,39 @@ $mobile: 560px;
   @media (max-width: $mobile) {
     padding: 2rem 0.8rem;
   }
-  .sort-list {
-    // display: flex;
-    // flex-direction: column;
-    // gap: 1rem;
-    // justify-content: flex-start;
-    // flex-wrap: wrap-reverse;
-    
-    padding: 0.3rem;
+  select.sort-list {
+    appearance: none;
+    background-image: url("../../assets/icons/sort-closed.svg");
+    background-position: calc(100% - 1rem);
+    background-size: 0.8rem;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+
+    margin-bottom: 1rem;
+
+    padding: 1rem;
     background-color: #901c1c;
     color: #fff;
     list-style: none;
-    width: 9rem;
     border-radius: 5px;
     flex-wrap: nowrap;
-    // overflow: hidden;
     font-size: 1.1rem;
     font-weight: 600;
     text-align: left;
-
-    height: 2.4rem;
+    width: 9.5rem;
+    height: 3.5rem;
     transition: height 0.5s ease-in-out;
     @media (max-width: $mobile) {
       margin-left: 1rem;
     }
-    // li {
-    //   display: flex;
-    //   flex-direction: column;
-    //   gap: 1rem;
 
-    //   &:not(:last-child)::after {
-    //     content: "";
-    //     padding: 0.5px 1rem;
-    //     background: #fff;
-    //   }
-    // }
-
-    // button {
-    //   color: #fff;
-    //   background: none;
-    //   border: none;
-    //   cursor: pointer;
-
-    //   img {
-    //     margin-left: 0.8rem;
-    //     padding-left: 0.75rem;
-    //   }
-    // }
+    &:focus {
+      background-image: url("../../assets/icons/sort-opened.svg");
+      background-position: calc(100% - 1rem);
+      background-size: 0.8rem;
+      background-repeat: no-repeat;
+    }
   }
   .photos_container_box {
     display: grid;
@@ -286,8 +273,8 @@ $mobile: 560px;
     gap: 6rem;
 
     .media-box {
-      width: 22em;
-      height: 22em;
+      width: 22.4rem;
+      height: 22.4rem;
       cursor: pointer;
       img {
         width: 100%;
@@ -331,7 +318,7 @@ $mobile: 560px;
         width: 22.4rem;
         cursor: pointer;
         overflow: hidden;
-
+        padding: 0;
         img {
           width: 100%;
           height: 100%;
