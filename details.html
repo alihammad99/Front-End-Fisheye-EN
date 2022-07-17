@@ -15,36 +15,48 @@
   </head>
   <body>
     <div class="galleryBox">
-      <div class="galleryBox-Wrapper">
-        <button tabindex="0" class="prevBtn">
+      <div class="galleryBox-Wrapper" role="Dialog">
+        <button
+          tabindex="0"
+          class="prevBtn"
+          role="Link"
+          aria-label="Previous image"
+        >
           <img src="./assets/icons/arrow-left.svg" class="arrowLeft" />
         </button>
         <div class="gallery"></div>
-        <button tabindex="0" class="nextBtn">
+        <button
+          tabindex="0"
+          class="nextBtn"
+          role="Link"
+          aria-label="Next image"
+        >
           <img src="./assets/icons/arrow-right.svg" class="arrowRight" />
         </button>
       </div>
-      <button tabindex="0" class="closeBtn">
+      <button
+        tabindex="0"
+        class="closeBtn"
+        role="Button"
+        aria-label="Close dialog"
+      >
         <img width="48" src="./assets/icons/close-gallery.svg" class="close" />
       </button>
     </div>
     <header>
-      <img
-        src="assets/images/logo.png"
-        tabindex="0"
-        class="logo"
-        alt=""
-        Fisheye
-        Home
-        page
-        role="Image link"
-      />
+      <a role="Image link" aria-label="Fisheye Home page" href="/index.html">
+        <img
+          src="assets/images/logo.png"
+          alt="Fisheye Home page"
+          class="logo"
+        />
+      </a>
     </header>
 
     <main id="main" class="container">
       <div class="photograph-header flex">
         <div class="left">
-          <h1 class="name" role="Heading (h1)" class="place" tabindex="0"></h1>
+          <h1 class="name" role="Heading" class="place" tabindex="0"></h1>
           <div role="Text" tabindex="0">
             <p class="city">London, UK</p>
             <p class="tag">Finding beauty in everyday things</p>
@@ -52,7 +64,7 @@
         </div>
         <button
           role="Button"
-          name="Contact Me"
+          aria-label="Contact Me"
           tabindex="0"
           class="contact_button center"
           onclick="displayModal()"
@@ -65,45 +77,105 @@
       </div>
 
       <section class="media_section">
-        <h5 class="media_section_title" tabindex="0">Order by</h5>
-        <ul class="sort-list" tabindex="0">
-          <li class="sort-item" id="defaultSort">
-            <button>
-              Popularity
-              <img src="./assets/icons/sort.svg" class="sort-item_icon" />
-            </button>
-          </li>
-          <li class="sort-item" id="sort-date"><button>Date</button></li>
-          <li class="sort-item" id="sort-name"><button>Title</button></li>
-        </ul>
+        <h5 class="media_section_title" role="Input label" tabindex="0">
+          Order by
+        </h5>
+        <select
+          aria-expanded="false"
+          name="sort"
+          aria-label="listbox"
+          class="sort-list"
+          role="Select menu"
+          tabindex="0"
+        >
+          <option
+            value="Popularity"
+            class="sort-item"
+            aria-labelledby="listbox"
+            aria-selected="false"
+            id="defaultSort"
+          >
+            Popularity
+            <!-- <img src="./assets/icons/sort.svg" class="sort-item_icon" /> -->
+          </option>
+          <option
+            value="Date"
+            class="sort-item"
+            aria-labelledby="listbox"
+            aria-selected="false"
+            id="sort-date"
+          >
+            Date
+          </option>
+          <option
+            value="Title"
+            class="sort-item"
+            aria-labelledby="listbox"
+            aria-selected="false"
+            id="sort-name"
+          >
+            Title
+          </option>
+        </select>
 
         <div class="photos_Container"></div>
       </section>
     </main>
     <div id="contact_modal">
-      <div class="modal">
+      <div class="modal" role="Dialog">
         <header>
-          <h2>Contact me</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 role="Heading">Contact me</h2>
+          <img
+            role="Button"
+            aria-label="Close Contact form"
+            src="assets/icons/close.svg"
+            onclick="closeModal()"
+          />
         </header>
         <form>
           <div class="form-first-name">
-            <label>First name</label>
-            <input type="text" name="first-name" />
+            <label role="Label">First name</label>
+            <input
+              type="text"
+              role="Text field"
+              aria-label="First name"
+              name="first-name"
+            />
           </div>
           <div>
-            <label>Last name</label>
-            <input type="text" name="last-name" />
+            <label role="Label">Last name</label>
+            <input
+              type="text"
+              role="Text field"
+              aria-label="Last name"
+              name="last-name"
+            />
           </div>
           <div>
-            <label>Email</label>
-            <input type="email" name="email" />
+            <label role="Label">Email</label>
+            <input
+              type="email"
+              role="Text field"
+              aria-label="Email"
+              name="email"
+            />
           </div>
           <div>
-            <label>Your message</label>
-            <input type="text" name="message" />
+            <label role="Label">Your message</label>
+            <input
+              type="text"
+              role="Text field"
+              aria-label="Your message"
+              name="message"
+            />
           </div>
-          <button class="contact_button" type="button" onclick="handleSubmit()">
+          <button
+            role="Button"
+            aria-label="Send"
+            class="contact_button"
+            type="button"
+            onclick="handleSubmit()"
+          >
             Send
           </button>
         </form>

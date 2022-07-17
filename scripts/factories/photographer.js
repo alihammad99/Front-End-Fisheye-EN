@@ -4,9 +4,11 @@ function photographerFactory(data) {
   const picture = `assets/photographers/Photographer_Photos/${portrait}`;
   const path = `/details.html?id=${id}`;
   function getUserCardDOM() {
-    const article = document.createElement("article");
+    const section = document.createElement("section");
     const link = document.createElement("a");
     link.setAttribute("href", path);
+    link.setAttribute("role", "link");
+    link.setAttribute("aria-label", name);
     link.setAttribute("target", "_blank");
     const Photo = document.createElement("img");
     Photo.classList.add("portrait");
@@ -16,20 +18,26 @@ function photographerFactory(data) {
 
     const Name = document.createElement("h2");
     Name.textContent = name;
+
     const Place = document.createElement("span");
+    Place.classList.add("place");
     Place.textContent = `${city}, ${country}`;
+
     const Bio = document.createElement("span");
+    Bio.classList.add("bio");
     Bio.textContent = tagline;
+
     const Price = document.createElement("span");
     Price.textContent = `$${price}/day`;
-    link.setAttribute("role", "Link (h2) + image");
+    Price.classList.add("price");
+
+    link.setAttribute("role", "Link");
     link.append(Photo, Name);
     Paragraph.append(Place, Bio, Price);
     Paragraph.setAttribute("role", "Paragraph text");
-    article.setAttribute("role", "Link (h2) + image");
-    article.appendChild(link);
-    article.appendChild(Paragraph);
-    return article;
+    section.appendChild(link);
+    section.appendChild(Paragraph);
+    return section;
   }
   return { name, picture, getUserCardDOM };
 }

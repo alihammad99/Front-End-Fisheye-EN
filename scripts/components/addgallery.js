@@ -61,6 +61,8 @@ export const handleNext = (action) => {
 const addPhoto = (item, assets) => {
   const Image = document.createElement("img");
   Image.setAttribute("src", `${assets}/${item.photo}`);
+  Image.setAttribute("role", `Image`);
+  Image.setAttribute("aria-label", `Lilac breasted roller`);
 
   const box = document.createElement("div");
   box.classList.add("gallery_media-box");
@@ -68,7 +70,7 @@ const addPhoto = (item, assets) => {
   const title = document.createElement("h3");
   title.classList.add("media-box_contentbox_title");
   title.textContent = item.title;
-  title.setAttribute("role", "text");
+  title.setAttribute("role", "Text");
 
   box.appendChild(Image);
   document.querySelector(".gallery").append(box, title);
@@ -83,6 +85,8 @@ const addVideo = (item, assets) => {
 
   source.setAttribute("src", `${assets}/${item.video}`);
   source.setAttribute("type", "video/mp4");
+  video.setAttribute("role", "video");
+  video.setAttribute("aria-label", "Lilac breasted roller");
   video.appendChild(source);
   video.autoplay = true;
   video.controls = true;
@@ -90,7 +94,7 @@ const addVideo = (item, assets) => {
   const title = document.createElement("h3");
   title.classList.add("media-box_contentbox_title");
   title.textContent = item.title;
-  title.setAttribute("role", "text");
+  title.setAttribute("role", "Text");
 
   // Push
   box.appendChild(video);

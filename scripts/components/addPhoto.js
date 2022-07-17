@@ -1,11 +1,27 @@
 import { addToGallery } from "./addgallery.js";
+let likeState = false;
+
+const handleLike = (likeIcon, likes, item) => {
+  likeState = !likeState;
+  if (likeState) {
+    likeIcon.setAttribute("src", `../assets/icons/like-fill.svg`);
+    likes.textContent = item.likes + 1;
+  }
+  if (!likeState) {
+    likeIcon.setAttribute("src", `../assets/icons/like.svg`);
+    likes.textContent = item.likes;
+  }
+};
+
+const handlePhoto = (item, index) => {
+  document.querySelector(".gallery").innerHTML = "";
+  document.querySelector(".galleryBox").style.display = "block";
+
+  addToGallery(item, "photo", index);
+};
 
 const addPhoto = (item, assets, cont, galleryMedia) => {
-  let likeState = false;
-
   const index = galleryMedia.indexOf(item);
-  const galleryVisible =
-    document.querySelector(".galleryBox").style.display === "block";
 
   //Main container
   const box = document.createElement("div");
@@ -20,20 +36,20 @@ const addPhoto = (item, assets, cont, galleryMedia) => {
   likebox.classList.add("likebox");
 
   //Photo
-  const img = document.createElement("img");
-  const handlePhoto = () => {
-    document.querySelector(".gallery").innerHTML = "";
-    document.querySelector(".galleryBox").style.display = "block";
+  const photoLink = document.createElement("button");
+  photoLink.setAttribute("role", `Image link`);
+  photoLink.setAttribute("aria-label", "Lilac breasted roller, closeup view");
+  photoLink.addEventListener("click", () => handlePhoto(item, index));
+  photoLink.addEventListener(
+    "keypress",
+    (e) => e.key === "Enter" && handlePhoto(item, index)
+  );
 
-    addToGallery(item, "photo", index);
-  };
-  img.setAttribute("src", `${assets}/${item.photo}`);
-  img.setAttribute("alt", item.title);
-  img.setAttribute("aria-label", "Lilac breasted roller, closeup view");
-  img.setAttribute("role", "Button");
-  img.addEventListener("click", () => handlePhoto());
-  img.addEventListener("keypress", (e) => e.key === "Enter" && handlePhoto());
-  img.setAttribute("tabindex", 0);
+  const photo = document.createElement("img");
+  photo.setAttribute("src", `${assets}/${item.photo}`);
+  photo.setAttribute("alt", item.title);
+
+  photoLink.appendChild(photo);
 
   //Photo's Title
   const title = document.createElement("h3");
@@ -44,34 +60,23 @@ const addPhoto = (item, assets, cont, galleryMedia) => {
   //Photo's Likes number
   const likes = document.createElement("h4");
   likes.textContent = item.likes;
-  likes.setAttribute("tabindex", 0);
 
   //Like Icon
   const likeIcon = document.createElement("img");
   likeIcon.setAttribute("src", `../assets/icons/like.svg`);
-  likeIcon.addEventListener("click", () => {
-    likeState = !likeState;
-    if (likeState) {
-      likeIcon.setAttribute("src", `../assets/icons/like-fill.svg`);
-      likes.textContent = item.likes + 1;
-    }
-    if (!likeState) {
-      likeIcon.setAttribute("src", `../assets/icons/like.svg`);
-      likes.textContent = item.likes;
-    }
-  });
-
-  // if (galleryVisible) {
-  //   img.setAttribute("tabindex", "-1");
-  //   title.setAttribute("tabindex", "-1");
-  //   likes.setAttribute("tabindex", "-1");
-  // }
+  likeIcon.setAttribute("role", `Image`);
+  likeIcon.setAttribute("alt", `likes`);
+  likeIcon.setAttribute("tabindex", 0);
+  likeIcon.addEventListener(
+    "keypress",
+    (e) => e.key === "Enter" && handleLike(likeIcon, likes, item)
+  );
+  likeIcon.addEventListener("click", () => handleLike(likeIcon, likes, item));
 
   //Append Elements
   likebox.append(likes, likeIcon);
   contentbox.append(title, likebox);
-  // box.appendChild();
-  box.append(img, contentbox);
+  box.append(photoLink, contentbox);
   cont.appendChild(box);
 };
 

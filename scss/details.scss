@@ -229,49 +229,52 @@ $mobile: 560px;
     padding: 2rem 0.8rem;
   }
   .sort-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: flex-start;
-    flex-wrap: wrap-reverse;
-    padding: 1rem;
+    // display: flex;
+    // flex-direction: column;
+    // gap: 1rem;
+    // justify-content: flex-start;
+    // flex-wrap: wrap-reverse;
+    
+    padding: 0.3rem;
     background-color: #901c1c;
+    color: #fff;
     list-style: none;
     width: 9rem;
     border-radius: 5px;
     flex-wrap: nowrap;
-    overflow: hidden;
+    // overflow: hidden;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
 
-    height: 1.4rem;
+    height: 2.4rem;
     transition: height 0.5s ease-in-out;
     @media (max-width: $mobile) {
       margin-left: 1rem;
     }
-    li {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    // li {
+    //   display: flex;
+    //   flex-direction: column;
+    //   gap: 1rem;
 
-      &:not(:last-child)::after {
-        content: "";
-        padding: 0.5px 1rem;
-        background: #fff;
-      }
-    }
+    //   &:not(:last-child)::after {
+    //     content: "";
+    //     padding: 0.5px 1rem;
+    //     background: #fff;
+    //   }
+    // }
 
-    button {
-      color: #fff;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-align: left;
-      img {
-        margin-left: 0.8rem;
-        padding-left: 0.75rem;
-      }
-    }
+    // button {
+    //   color: #fff;
+    //   background: none;
+    //   border: none;
+    //   cursor: pointer;
+
+    //   img {
+    //     margin-left: 0.8rem;
+    //     padding-left: 0.75rem;
+    //   }
+    // }
   }
   .photos_container_box {
     display: grid;
@@ -305,17 +308,14 @@ $mobile: 560px;
         justify-content: space-between;
         z-index: 5000;
         align-items: center;
+        margin-top: 0.5rem;
         .media-box_contentbox_title {
           font-size: 1.35rem;
           color: #901c1c;
           margin: 0;
           text-align: left;
         }
-        img {
-          height: 1.5rem;
-          width: 1.5rem;
-          cursor: pointer;
-        }
+
         .likebox {
           display: flex;
           flex-direction: row;
@@ -323,6 +323,19 @@ $mobile: 560px;
           color: #901c1c;
           font-size: 1.5rem;
           align-items: center;
+          height: 1.5rem;
+        }
+      }
+      button {
+        height: 22.4rem;
+        width: 22.4rem;
+        cursor: pointer;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
     }

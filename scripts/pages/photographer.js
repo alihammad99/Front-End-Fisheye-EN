@@ -39,6 +39,9 @@ const getData = async () => {
   const [{ name, city, country, tagline, portrait, assets }] = item;
   globalAssets = assets;
   document.querySelector(".modal h2").innerHTML = `Contact me<br />${name}`;
+  document
+    .querySelector(".modal")
+    .setAttribute("aria-label", "Contact me " + name);
   const next = document.querySelector(".nextBtn");
   const previous = document.querySelector(".prevBtn");
 
@@ -60,6 +63,8 @@ const getData = async () => {
   document.querySelector(".tag").textContent = tagline;
   const photo = document.querySelector(".portrait");
   photo.setAttribute("src", Portrait);
+  photo.setAttribute("role", "Image");
+  photo.setAttribute("alt", name);
   const photosBox = document.querySelector(".photos_Container");
   const mediasBox = document.createElement("div");
 
@@ -106,49 +111,57 @@ const getData = async () => {
       addPhoto(item, assets, mediasBox, galleryMedia);
     }
   });
-  let sortState = false;
-  const sortBtnBox = document.querySelector(".sort-list");
-  const sortIcon = document.querySelector(".sort-item_icon");
-  sortIcon.addEventListener("click", () => {
-    if (!sortState) {
-      sortBtnBox.style.height = "auto";
-      sortState = !sortState;
-      sortIcon.style.transform = "rotate(180deg) translateX(-1rem)";
+
+  //Sort Photos
+  const sortBtn = document.querySelector(".sort-list");
+
+  let openListState = false;
+
+  // Aria Expand state
+  sortBtn.addEventListener("click", () => {
+    if (!openListState) {
+      openListState = !openListState;
+      return sortBtn.setAttribute("aria-expanded", "true");
     } else {
-      sortBtnBox.style.height = "1.4rem";
-      sortState = !sortState;
-      sortIcon.style.transform = "rotate(0) translateX(0.2rem)";
+      openListState = !openListState;
+      return sortBtn.setAttribute("aria-expanded", "false");
     }
   });
-  const defaultSort = document.getElementById("defaultSort");
-  const sortByDate = document.getElementById("sort-date");
-  const sortByName = document.getElementById("sort-name");
 
-  //Default Sort
-  defaultSort.addEventListener("click", () => {
-    galleryMedia = [...defaultData];
-    updateSorted();
-  });
+  sortBtn.addEventListener("change", (e) => {
+    console.log();
+    sortBtn.setAttribute("aria-expanded", "true");
+    switch (e.target.value) {
+      case "Date":
+        galleryMedia = galleryMedia.sort((a, b) => b.date - a.date);
+        updateOptionsState(e.target.options, 1);
+        // e.target.options[1].setAttribute("aria-selected", "true");
+        updateSorted();
+        break;
 
-  //Sort Photos by Dates
-  sortByDate.addEventListener("click", () => {
-    galleryMedia = galleryMedia.sort((a, b) => b.date - a.date);
-    updateSorted();
-  });
+      case "Title":
+        galleryMedia = galleryMedia.sort((a, b) => {
+          if (a.title < b.title) {
+            return -1;
+          }
+          if (b.title < a.title) {
+            return 1;
+          }
+          return 0;
+        });
+        updateOptionsState(e.target.options, 2);
+        // e.target.options[2].setAttribute("aria-selected", "true");
+        updateSorted();
+        break;
 
-  //Sort Photos by titles
-  sortByName.addEventListener("click", () => {
-    galleryMedia = galleryMedia.sort((a, b) => {
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (b.title < a.title) {
-        return 1;
-      }
-      return 0;
-    });
+      default:
+        galleryMedia = [...defaultData];
+        updateOptionsState(e.target.options, 0);
 
-    updateSorted();
+        // e.target.options[0].setAttribute("aria-selected", "true");
+        updateSorted();
+        break;
+    }
   });
 
   photosBox.appendChild(mediasBox);
@@ -163,6 +176,13 @@ const getData = async () => {
         addPhoto(item, assets, mediasBox, galleryMedia, galleryPhoto);
       }
     });
+  };
+
+  const updateOptionsState = (item, index) => {
+    for (let i = 0; i < item.length; i++) {
+      item[i].setAttribute("aria-selected", "false");
+    }
+    item[index].setAttribute("aria-selected", "true");
   };
 
   const closeGalleryBtn = document.querySelector(".closeBtn");
