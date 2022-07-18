@@ -2,7 +2,7 @@ function photographerFactory(data) {
   const { name, portrait, id, city, country, tagline, price } = data;
 
   const picture = `assets/photographers/Photographer_Photos/${portrait}`;
-  const path = `/details.html?id=${id}`;
+  const path = `/photographer.html?id=${id}`;
   function getUserCardDOM() {
     const section = document.createElement("section");
     const link = document.createElement("a");
