@@ -5,7 +5,7 @@ export let galleryMedia = [];
 
 setTimeout(() => {
   galleryMedia = [...defaultData];
-}, 30);
+}, 150);
 
 const handleSorting = (sortBtn, updateFunc, e) => {
   sortBtn.setAttribute("aria-expanded", "true");

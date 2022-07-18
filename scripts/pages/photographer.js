@@ -76,7 +76,7 @@ const getData = async () => {
       }
       totalLikes += item.likes;
     });
-  }, 50);
+  }, 500);
 
   //Sort Photos
 
