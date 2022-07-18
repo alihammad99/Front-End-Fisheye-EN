@@ -76,7 +76,7 @@ const getData = async () => {
       }
       totalLikes += item.likes;
     });
-  }, 500);
+  }, 400);
 
   //Sort Photos
 
@@ -104,7 +104,7 @@ const getData = async () => {
 
   setTimeout(() => {
     document.getElementById("totalLikes").textContent = totalLikes;
-  }, 70);
+  }, 700);
 
   handleGalleryBtn();
 };
