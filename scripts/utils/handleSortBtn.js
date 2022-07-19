@@ -1,4 +1,4 @@
-import handleSorting from "./handleSorting.js";
+import { handleSorting } from "../pages/photographer.js";
 
 let openListState = false;
 

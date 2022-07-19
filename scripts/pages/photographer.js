@@ -4,13 +4,14 @@ import {
   handleGalleryBtn,
   handleMedia,
   handleSortBtn,
-  galleryMedia,
+  updateOptionsState,
   updateSorted,
 } from "../utils/index.js";
 let slug;
 let data;
 export let globalAssets;
 export const defaultData = [];
+export let galleryMedia = [];
 
 const getData = async () => {
   //Get photographers data
@@ -65,20 +66,17 @@ const getData = async () => {
 
   //Add Data to Default Array Function
   handleMedia(medias, defaultData);
+  galleryMedia = [...defaultData];
 
-  setTimeout(() => {
-    galleryMedia.forEach((item) => {
-      if (item.video) {
-        addVideo(item, assets, mediasBox, galleryMedia);
-      }
-      if (item.photo) {
-        addPhoto(item, assets, mediasBox, galleryMedia);
-      }
-      totalLikes += item.likes;
-    });
-  }, 400);
-
-  //Sort Photos
+  galleryMedia.forEach((item) => {
+    if (item.video) {
+      addVideo(item, assets, mediasBox, galleryMedia);
+    }
+    if (item.photo) {
+      addPhoto(item, assets, mediasBox, galleryMedia);
+    }
+    totalLikes += item.likes;
+  });
 
   // Aria Expand state
   const updateFunc = () =>
@@ -101,14 +99,41 @@ const getData = async () => {
 
   // document.getElementById("price").textContent = price;
   document.getElementById("price").textContent = `${price}€ / jour`;
-
-  setTimeout(() => {
-    document.getElementById("totalLikes").textContent = totalLikes;
-  }, 700);
-
+  document.getElementById("totalLikes").textContent = totalLikes;
   handleGalleryBtn();
 };
 
 //Sorting Function
+export const handleSorting = (sortBtn, updateFunc, e) => {
+  sortBtn.setAttribute("aria-expanded", "true");
+
+  switch (e.target.value) {
+    case "Date":
+      galleryMedia = galleryMedia.sort((a, b) => b.date - a.date);
+      updateOptionsState(e.target.options, 1);
+      updateFunc();
+      break;
+
+    case "Title":
+      galleryMedia = galleryMedia.sort((a, b) => {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (b.title < a.title) {
+          return 1;
+        }
+        return 0;
+      });
+      updateOptionsState(e.target.options, 2);
+      updateFunc();
+      break;
+
+    default:
+      galleryMedia = [...defaultData];
+      updateOptionsState(e.target.options, 0);
+      updateFunc();
+      break;
+  }
+};
 
 getData();

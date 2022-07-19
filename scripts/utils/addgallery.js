@@ -1,5 +1,4 @@
-import { globalAssets } from "../pages/photographer.js";
-import { galleryMedia } from "./handleSorting.js";
+import { globalAssets, galleryMedia } from "../pages/photographer.js";
 let current;
 
 export const addToGallery = (item, type, index) => {
