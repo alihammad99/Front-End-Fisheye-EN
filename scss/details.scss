@@ -90,6 +90,7 @@ header {
       color: #901c1c;
       font-size: 24px;
       font-weight: 400;
+      display: block;
       @media (max-width: $mobile) {
         text-align: center;
       }
@@ -97,6 +98,7 @@ header {
     .tag {
       color: #525252;
       font-size: 18px;
+      font-weight: 400;
       font-weight: 400;
       @media (max-width: $mobile) {
         text-align: center;

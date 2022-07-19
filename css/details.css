@@ -75,13 +75,15 @@ header {
   .flex .left .city {
     color: #901c1c;
     font-size: 24px;
-    font-weight: 400; }
+    font-weight: 400;
+    display: block; }
     @media (max-width: 560px) {
       .flex .left .city {
         text-align: center; } }
   .flex .left .tag {
     color: #525252;
     font-size: 18px;
+    font-weight: 400;
     font-weight: 400; }
     @media (max-width: 560px) {
       .flex .left .tag {
