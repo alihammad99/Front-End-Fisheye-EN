@@ -24,7 +24,7 @@
         >
           <img
             src="./assets/icons/arrow-left.svg"
-            alt="previous image"
+            alt="go to  previous button's image"
             class="arrowLeft"
           />
         </button>
@@ -36,7 +36,7 @@
           aria-label="Next image"
         >
           <img
-            alt="next image"
+            alt="go to next button's image"
             src="./assets/icons/arrow-right.svg"
             class="arrowRight"
           />
@@ -50,7 +50,7 @@
       >
         <img
           width="48"
-          alt="Close dialog Image"
+          alt="Close dialog button's Image"
           src="./assets/icons/close-gallery.svg"
           class="close"
         />
@@ -75,10 +75,10 @@
       <div class="photograph-header flex">
         <div class="left">
           <h1 class="name" role="Heading" class="place" tabindex="0">Name</h1>
-          <h4 role="Text" tabindex="0">
-            <p class="city">London, UK</p>
-            <p class="tag">Finding beauty in everyday things</p>
-          </h4>
+          <p role="Text" tabindex="0">
+            <h5 class="city">London, UK</h5>
+            <h5 class="tag">Finding beauty in everyday things</h5>
+          </p>
         </div>
         <button
           role="Button"
@@ -95,13 +95,14 @@
       </div>
 
       <section class="media_section">
-        <p class="media_section_title" role="Input label" tabindex="0">
+        <h6 class="media_section_title" role="Input label" tabindex="0">
           Order by
-        </p>
+        </h6>
 
         <select
           aria-expanded="false"
           name="sort"
+          id="listbox"
           aria-label="listbox"
           class="sort-list"
           role="Select menu"
