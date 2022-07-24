@@ -58,8 +58,9 @@ export const handleNext = (action) => {
 };
 
 const handleAddPhoto = (item, assets) => {
+  const photoSource = item.photo
   const photo = document.createElement("img");
-  photo.setAttribute("src", `${assets}/${item.photo}`);
+  photo.setAttribute("src", `${assets}/${photoSource}`);
   photo.setAttribute("role", `Image`);
   photo.setAttribute("aria-label", `Lilac breasted roller`);
 

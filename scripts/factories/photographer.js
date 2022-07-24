@@ -1,6 +1,8 @@
 function photographerFactory(data) {
   const { name, portrait, id, city, country, tagline, price } = data;
 
+  const minimumPhoto = portrait.slice(0,-4)
+
   const picture = `assets/photographers/Photographer_Photos/${portrait}`;
   const path = `/photographer.html?id=${id}`;
   function getUserCardDOM() {

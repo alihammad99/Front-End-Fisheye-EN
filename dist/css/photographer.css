@@ -1,0 +1,82 @@
+#contact_modal {
+  display: none;
+}
+
+.photograph-header {
+  background-color: #fafafa;
+  /* height: 300px; */
+  margin: 0 100px;
+}
+
+.contact_button {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal {
+  border-radius: 5px;
+  background-color: #db8876;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px;
+  margin: auto;
+}
+
+.modal header {
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+.modal header img {
+  cursor: pointer;
+}
+
+.modal header h2 {
+  font-size: 2.5rem;
+  font-weight: normal;
+  text-align: left;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form label {
+  color: #312e2e;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: self-start;
+  margin-bottom: 26px;
+}
+
+form input {
+  width: 93%;
+  height: 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.6rem;
+  padding: 1rem;
+}
+
+/*# sourceMappingURL=photographer.css.map */
