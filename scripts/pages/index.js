@@ -32,5 +32,4 @@ const init = async () => {
   const { photographers } = await getPhotographers();
   displayData(photographers);
 };
-
-window.onload(() => init());
+window.addEventListener("load", init());
