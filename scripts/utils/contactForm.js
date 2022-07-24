@@ -1,8 +1,8 @@
 const modal = document.getElementById("contact_modal");
 
-function displayModal() {
+const displayModal = () => {
   modal.style.display = "block";
-}
+};
 
 function closeModal() {
   modal.style.display = "none";
@@ -22,7 +22,7 @@ const handleSubmit = () => {
     message:
       "Your message: " + form.querySelector('input[name="message"]').value,
   };
-  
+
   for (let i in details) {
     console.log(details[i]);
   }

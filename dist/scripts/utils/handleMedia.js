@@ -1,0 +1,2 @@
+const handleMedia=(e,t)=>{e.forEach((e=>{e.image&&t.push({photo:e.image,alt:e.title,id:e.id,title:e.title,price:e.price,displayDate:e.date,date:new Date(e.date),likes:e.likes,photographer:e.photographerId}),e.video&&t.push({video:e.video,id:e.id,title:e.title,price:e.price,displayDate:e.date,date:new Date(e.date),likes:e.likes,photographer:e.photographerId})}))};export default handleMedia;
+//# sourceMappingURL=handleMedia.js.map

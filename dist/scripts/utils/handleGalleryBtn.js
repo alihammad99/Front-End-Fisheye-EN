@@ -1,0 +1,2 @@
+import{handleNext}from"./addgallery.js";const handleGalleryBtn=()=>{const e=document.querySelector(".nextBtn"),t=document.querySelector(".prevBtn");e.addEventListener("click",(()=>handleNext("next"))),e.addEventListener("keypress",(e=>"Enter"==e.key&&handleNext("next"))),t.addEventListener("click",(()=>handleNext("previous"))),t.addEventListener("keypress",(e=>"Enter"==e.key&&handleNext("previous")))};export default handleGalleryBtn;
+//# sourceMappingURL=handleGalleryBtn.js.map

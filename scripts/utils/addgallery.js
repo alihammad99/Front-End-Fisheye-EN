@@ -5,10 +5,10 @@ export const addToGallery = (item, type, index) => {
   current = index;
 
   if (type === "photo") {
-    addPhoto(item, globalAssets);
+    handleAddPhoto(item, globalAssets);
   }
   if (type === "video") {
-    addVideo(item, globalAssets);
+    handleAddVideo(item, globalAssets);
   }
 };
 
@@ -23,12 +23,12 @@ export const handleNext = (action) => {
 
         if (item.photo) {
           current++;
-          addPhoto(item, globalAssets);
+          handleAddPhoto(item, globalAssets);
         }
 
         if (item.video) {
           current++;
-          addVideo(item, globalAssets);
+          handleAddVideo(item, globalAssets);
         }
       }
       break;
@@ -40,12 +40,12 @@ export const handleNext = (action) => {
 
         if (item.photo) {
           current--;
-          addPhoto(item, globalAssets);
+          handleAddPhoto(item, globalAssets);
         }
 
         if (item.video) {
           current--;
-          addVideo(item, globalAssets);
+          handleAddVideo(item, globalAssets);
         }
       }
       break;
@@ -57,11 +57,11 @@ export const handleNext = (action) => {
   }
 };
 
-const addPhoto = (item, assets) => {
-  const Image = document.createElement("img");
-  Image.setAttribute("src", `${assets}/${item.photo}`);
-  Image.setAttribute("role", `Image`);
-  Image.setAttribute("aria-label", `Lilac breasted roller`);
+const handleAddPhoto = (item, assets) => {
+  const photo = document.createElement("img");
+  photo.setAttribute("src", `${assets}/${item.photo}`);
+  photo.setAttribute("role", `Image`);
+  photo.setAttribute("aria-label", `Lilac breasted roller`);
 
   const box = document.createElement("div");
   box.classList.add("gallery_media-box");
@@ -71,11 +71,11 @@ const addPhoto = (item, assets) => {
   title.textContent = item.title;
   title.setAttribute("role", "Text");
 
-  box.appendChild(Image);
+  box.appendChild(photo);
   document.querySelector(".gallery").append(box, title);
 };
 
-const addVideo = (item, assets) => {
+const handleAddVideo = (item, assets) => {
   const box = document.createElement("div");
   box.classList.add("gallery_media-box");
 

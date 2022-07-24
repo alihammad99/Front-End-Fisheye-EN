@@ -15,7 +15,6 @@ const handleMedia = (medias, defaultData) => {
     med.video &&
       defaultData.push({
         video: med.video,
-        alt: med.title,
         id: med.id,
         title: med.title,
         price: med.price,

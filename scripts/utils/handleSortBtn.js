@@ -2,7 +2,7 @@ import { handleSorting } from "../pages/photographer.js";
 
 let openListState = false;
 
-const handleSortBtn = (galleryMedia, updateFunc, defaultData) => {
+const handleSortBtn = (updateFunc) => {
   const sortBtn = document.querySelector(".sort-list");
 
   sortBtn.addEventListener("click", () => {

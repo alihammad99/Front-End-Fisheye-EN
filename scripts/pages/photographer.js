@@ -1,30 +1,23 @@
-import {
-  addPhoto,
-  addVideo,
-  handleGalleryBtn,
-  handleMedia,
-  handleSortBtn,
-  updateOptionsState,
-  updateSorted,
-} from "../utils/index.js";
+import * as components from "../utils/index.js";
+import { getPhotographers } from "./index.js";
+
 let slug;
-let data;
+let photographersData;
+let mediaData;
 export let globalAssets;
 export const defaultData = [];
 export let galleryMedia = [];
 
-const getData = async () => {
-  //Get photographers data
-  try {
-    const photographersdata = await fetch("../../data/photographers.json").then(
-      (response) => response.json()
-    );
-    data = photographersdata;
-  } catch (err) {
-    console.error(err);
-  }
+async function getData() {
+  const { photographers, media } = await getPhotographers();
 
-  //Get URL Slug
+  photographersData = photographers;
+  mediaData = media;
+  await getSlug();
+  handleData();
+}
+
+async function getSlug() {
   try {
     const url = await fetch(window.location.search).then(
       (response) => response.url
@@ -33,10 +26,15 @@ const getData = async () => {
   } catch (err) {
     console.error(err);
   }
+}
 
-  const photographers = data.photographers;
-  const media = data.media;
+export const handleData = async () => {
+  // console;
+
+  const photographers = photographersData;
+  const media = mediaData;
   const item = photographers.filter((i) => i.id == slug);
+
   const [{ name, city, country, tagline, portrait, assets, price }] = item;
   globalAssets = assets;
   document.querySelector(".modal h2").innerHTML = `Contact me<br />${name}`;
@@ -65,24 +63,24 @@ const getData = async () => {
   const galleryPhoto = document.querySelector(".galleryPhoto");
 
   //Add Data to Default Array Function
-  handleMedia(medias, defaultData);
+  components.handleMedia(medias, defaultData);
   galleryMedia = [...defaultData];
 
   galleryMedia.forEach((item) => {
     if (item.video) {
-      addVideo(item, assets, mediasBox, galleryMedia);
+      components.addVideo(item, assets, mediasBox, galleryMedia);
     }
     if (item.photo) {
-      addPhoto(item, assets, mediasBox, galleryMedia);
+      components.addPhoto(item, assets, mediasBox, galleryMedia);
     }
     totalLikes += item.likes;
   });
 
   // Aria Expand state
   const updateFunc = () =>
-    updateSorted(mediasBox, galleryMedia, assets, galleryPhoto);
+    components.updateSorted(mediasBox, galleryMedia, assets, galleryPhoto);
 
-  handleSortBtn(galleryMedia, updateFunc, defaultData);
+  components.handleSortBtn(updateFunc);
 
   photosBox.appendChild(mediasBox);
 
@@ -100,7 +98,7 @@ const getData = async () => {
   // document.getElementById("price").textContent = price;
   document.getElementById("price").textContent = `${price}€ / jour`;
   document.getElementById("totalLikes").textContent = totalLikes;
-  handleGalleryBtn();
+  components.handleGalleryBtn();
 };
 
 //Sorting Function
@@ -110,7 +108,7 @@ export const handleSorting = (sortBtn, updateFunc, e) => {
   switch (e.target.value) {
     case "Date":
       galleryMedia = galleryMedia.sort((a, b) => b.date - a.date);
-      updateOptionsState(e.target.options, 1);
+      components.updateOptionsState(e.target.options, 1);
       updateFunc();
       break;
 
@@ -124,13 +122,13 @@ export const handleSorting = (sortBtn, updateFunc, e) => {
         }
         return 0;
       });
-      updateOptionsState(e.target.options, 2);
+      components.updateOptionsState(e.target.options, 2);
       updateFunc();
       break;
 
     default:
       galleryMedia = [...defaultData];
-      updateOptionsState(e.target.options, 0);
+      components.updateOptionsState(e.target.options, 0);
       updateFunc();
       break;
   }

@@ -1,31 +1,36 @@
-async function getPhotographers() {
-  // TODO : Replace with data from the JSON file
-  const data = await fetch("../../data/photographers.json").then((response) =>
-    response.json()
-  );
+import photographerFactory from "../factories/photographer.js";
 
-  const photographers = data.photographers;
+const request = new Request("../../data/photographers.json");
+
+export const getPhotographers = async () => {
+  // TODO : Replace with data from the JSON file
+  const data = await fetch(request)
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
+
+  const {photographers, media} = data;
 
   // Return photographer array only once
   return {
     photographers,
+    media,
   };
-}
+};
 
-async function displayData(photographers) {
+const displayData = async (photographers) => {
   const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection.appendChild(userCardDOM);
+    photographersSection && photographersSection.appendChild(userCardDOM);
   });
-}
+};
 
-async function init() {
+const init = async () => {
   // Retreive photographer data
   const { photographers } = await getPhotographers();
   displayData(photographers);
-}
+};
 
 init();

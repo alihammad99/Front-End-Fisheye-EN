@@ -32,6 +32,7 @@ const addVideo = (item, assets, cont, galleryMedia) => {
 
   const likeIcon = document.createElement("img");
   likeIcon.setAttribute("src", `../assets/icons/like.svg`);
+  likeIcon.setAttribute("alt", `likes`);
   likeIcon.addEventListener("click", () => {
     likeState = !likeState;
     if (likeState) {

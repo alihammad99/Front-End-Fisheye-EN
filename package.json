@@ -1,10 +1,11 @@
 {
-  "name": "p6",
+  "name": "fisheye",
   "version": "1.0.0",
-  "description": "Nothing to install, just open `index.html`.",
+  "description": "Openclassrooms Project 6`.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
     "scss": "node-sass --watch scss -o css"
   },
   "repository": {
@@ -19,5 +20,12 @@
   "homepage": "https://github.com/alihammad99/Front-End-Fisheye-EN#readme",
   "dependencies": {
     "node-sass": "^7.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.1.0"
   }
 }

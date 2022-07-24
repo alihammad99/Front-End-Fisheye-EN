@@ -47,7 +47,7 @@ const addPhoto = (item, assets, cont, galleryMedia) => {
 
   const photo = document.createElement("img");
   photo.setAttribute("src", `${assets}/${item.photo}`);
-  photo.setAttribute("alt", item.title);
+  photo.setAttribute("alt", `${item.title} photo`);
 
   photoLink.appendChild(photo);
 

@@ -1,0 +1,2 @@
+import{handleSorting}from"../pages/photographer.js";let openListState=!1;const handleSortBtn=t=>{const e=document.querySelector(".sort-list");e.addEventListener("click",(()=>openListState?(openListState=!openListState,e.setAttribute("aria-expanded","false")):(openListState=!openListState,e.setAttribute("aria-expanded","true")))),e.addEventListener("change",(n=>handleSorting(e,t,n)))};export default handleSortBtn;
+//# sourceMappingURL=handleSortBtn.js.map
