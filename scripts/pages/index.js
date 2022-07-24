@@ -8,7 +8,7 @@ export const getPhotographers = async () => {
     .then((response) => response.json())
     .catch((err) => console.error(err));
 
-  const {photographers, media} = await data;
+  const { photographers, media } = await data;
 
   // Return photographer array only once
   return {
@@ -33,4 +33,4 @@ const init = async () => {
   displayData(photographers);
 };
 
-init();
+window.onload(() => init());
